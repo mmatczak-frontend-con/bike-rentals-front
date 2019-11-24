@@ -1,6 +1,6 @@
-<div *ngIf="statsData && statsData.length">
+<div *ngIf="statsData && (statsData | async)">
   <app-rental-chart
-    *ngFor="let bike of statsData"
+    *ngFor="let bike of statsData | async"
     [bikeId]="bike.bikeId"
     [dailyStats]="bike.dailyStats"
   ></app-rental-chart>

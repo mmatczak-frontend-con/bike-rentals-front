@@ -14,6 +14,6 @@ export class StatsImprovedComponent implements OnInit {
   constructor(private httpClient: HttpClient) {}
 
   ngOnInit() {
-    this.statsData = this.httpClient.get<RentalStats[]>('/api/stats/v2');
+    this.statsData = this.httpClient.get<RentalStats[]>('/api/stats/v3');
   }
 }

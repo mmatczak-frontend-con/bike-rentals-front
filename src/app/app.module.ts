@@ -8,6 +8,7 @@ import { StatsNaiveComponent } from './stats-naive/stats-naive.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ChartsModule } from 'ng2-charts';
+import { RentalChartComponent } from './rental-chart/rental-chart.component';
 
 const appRoutes: Routes = [
   { path: 'stats-naive', component: StatsNaiveComponent },
@@ -17,7 +18,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, StatsNaiveComponent],
+  declarations: [AppComponent, StatsNaiveComponent, RentalChartComponent],
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,

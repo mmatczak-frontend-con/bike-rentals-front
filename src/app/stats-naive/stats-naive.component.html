@@ -1,1 +1,7 @@
-<p>stats-naive works!</p>
+<div *ngIf="statsData && statsData.length">
+  <app-rental-chart
+    *ngFor="let bike of statsData"
+    [bikeId]="bike.bikeId"
+    [dailyStats]="bike.dailyStats"
+  ></app-rental-chart>
+</div>

@@ -1,0 +1,15 @@
+<mat-card class="bike-stat-chart">
+  <span><mat-icon>directions_bike</mat-icon> {{ bikeId }}</span>
+  <div class="chart-container">
+    <canvas
+      baseChart
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [plugins]="barChartPlugins"
+      [legend]="barChartLegend"
+      [chartType]="barChartType"
+    >
+    </canvas>
+  </div>
+</mat-card>

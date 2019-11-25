@@ -1,20 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RentalStats, DailyStat } from '../rental-chart/rental-stats.model';
 import { HttpClient } from '@angular/common/http';
+import { Subscription, BehaviorSubject, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-stats-naive',
   templateUrl: './stats-naive.component.html',
   styleUrls: ['./stats-naive.component.css']
 })
-export class StatsNaiveComponent implements OnInit {
+export class StatsNaiveComponent implements OnInit, OnDestroy {
   statsData: RentalStats[] = [];
+
+  private subscriptions: Subscription;
+  private destroyed = new Subject();
 
   constructor(private httpClient: HttpClient) {}
 
   ngOnInit() {
-    this.httpClient
+    const subscription = this.httpClient
       .get<{ bikeId: string; rentStartDate: string }[]>('/api/stats/v1')
+      .pipe(takeUntil(this.destroyed))
       .subscribe(stats => {
         const uniqueBikeIds = new Set(stats.map(s => s.bikeId));
 
@@ -36,5 +42,13 @@ export class StatsNaiveComponent implements OnInit {
           this.statsData.push({ bikeId, dailyStats });
         });
       });
+
+    this.subscriptions.add(subscription);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+    this.destroyed.next();
+    this.destroyed.complete();
   }
 }

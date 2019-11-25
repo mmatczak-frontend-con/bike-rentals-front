@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-stats-detailed',
@@ -11,11 +11,9 @@ import { map } from 'rxjs/operators';
 export class StatsDetailedComponent implements OnInit {
   stats: Observable<string>;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.stats = this.httpClient
-      .get<{ stats: string }>('/api/stats/detailed')
-      .pipe(map(response => response.stats));
+    this.stats = this.route.data.pipe(map(data => data.stats));
   }
 }

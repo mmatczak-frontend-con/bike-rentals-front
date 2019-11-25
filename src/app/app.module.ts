@@ -11,11 +11,18 @@ import { ChartsModule } from 'ng2-charts';
 import { RentalChartComponent } from './rental-chart/rental-chart.component';
 import { StatsImprovedComponent } from './stats-improved/stats-improved.component';
 import { StatsDetailedComponent } from './stats-detailed/stats-detailed.component';
+import { StatisticsResolver } from './stats-detailed/statistics-resolver';
 
 const appRoutes: Routes = [
   { path: 'stats-naive', component: StatsNaiveComponent },
   { path: 'stats-improved', component: StatsImprovedComponent },
-  { path: 'stats-detailed', component: StatsDetailedComponent },
+  {
+    path: 'stats-detailed',
+    component: StatsDetailedComponent,
+    resolve: {
+      stats: StatisticsResolver
+    }
+  },
 
   { path: '', redirectTo: '/stats-naive', pathMatch: 'full' },
   { path: '**', redirectTo: '/stats-naive', pathMatch: 'full' }

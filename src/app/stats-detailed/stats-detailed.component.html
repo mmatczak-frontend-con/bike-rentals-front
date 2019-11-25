@@ -1,0 +1,8 @@
+<mat-progress-spinner
+  *ngIf="!(stats | async) as response; else elseBlock"
+  color="primary"
+  mode="indeterminate"
+></mat-progress-spinner>
+<ng-template #elseBlock
+  ><span>{{ stats | async }}</span></ng-template
+>

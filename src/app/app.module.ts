@@ -10,10 +10,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { ChartsModule } from 'ng2-charts';
 import { RentalChartComponent } from './rental-chart/rental-chart.component';
 import { StatsImprovedComponent } from './stats-improved/stats-improved.component';
+import { StatsDetailedComponent } from './stats-detailed/stats-detailed.component';
 
 const appRoutes: Routes = [
   { path: 'stats-naive', component: StatsNaiveComponent },
   { path: 'stats-improved', component: StatsImprovedComponent },
+  { path: 'stats-detailed', component: StatsDetailedComponent },
 
   { path: '', redirectTo: '/stats-naive', pathMatch: 'full' },
   { path: '**', redirectTo: '/stats-naive', pathMatch: 'full' }
@@ -24,7 +26,8 @@ const appRoutes: Routes = [
     AppComponent,
     StatsNaiveComponent,
     RentalChartComponent,
-    StatsImprovedComponent
+    StatsImprovedComponent,
+    StatsDetailedComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
